@@ -1,7 +1,7 @@
 
 import 'package:countries_api/models/country.dart';
 import 'package:countries_api/repositories/country.dart';
-import 'package:flutter_riverpod/legacy.dart';
+import 'package:riverpod/riverpod.dart';
 class CountriesState{
   final List<Country> countries;
   final bool isLoading;

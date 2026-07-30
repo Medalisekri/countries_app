@@ -13,23 +13,5 @@ class QuizResult {
    required this.countriesName,
 });
 
- Map<String , dynamic> toJson(){
-   return{
-     'type':type,
-     'score':score,
-     'totalQuestions':totalQuestions,
-     'date':date.toIso8601String(),
-     'countriesName':countriesName
-   };
- }
 
- factory QuizResult.fromJson(Map<String , dynamic> json){
-   return QuizResult(
-     type: json['type'],
-     score: json['score'],
-     totalQuestions: json['totalQuestions'],
-     date: DateTime.parse(json['date']) ,
-     countriesName: json['countriesName'],
-   );
- }
 }
