@@ -7,28 +7,33 @@ class Country {
   final List<String> currencies;
   final List<String> languages;
 
-    Country({
+  const Country({
     required this.name,
-      required this.continent,
-      required this.capital,
-      required this.population,
-      required this.flagUrl,
-      required this.currencies,
-      required this.languages
-}
-  );
+    required this.continent,
+    required this.capital,
+    required this.population,
+    required this.flagUrl,
+    required this.currencies,
+    required this.languages,
+  });
 
+  factory Country.fromJson(Map<String, dynamic> json) {
+    final capitals = json['capitals'] as List;
+    final continents = json['continents'] as List;
 
-    factory Country.fromJson(Map<String ,dynamic> json){
-      return Country(
-        name: json['name']['common'],
-        continent: json['continents'][0],
-        capital:json['capitals'][0]['name'],
-        population: json['population'],
-        flagUrl: json['flags']['png'],
-        currencies: List<String>.from(json['currencies'].values.map((c)=>c['name'])),
-        languages: List<String>.from(json['languages'].values),
-      );
-    }
+    return Country(
+      name: json['names']['common'],
+      continent: continents.isEmpty ? '' : continents.first,
+      capital: capitals.isEmpty ? '' : capitals.first['name'],
+      population: json['population'],
+      flagUrl: json['flag']['url_png'],
+      currencies: (json['currencies'] as List)
+          .map((c) => c['name'] as String)
+          .toList(),
+      languages: (json['languages'] as List)
+          .map((l) => l['name'] as String)
+          .toList(),
+    );
+  }
 
 }
