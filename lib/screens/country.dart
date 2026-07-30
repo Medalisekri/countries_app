@@ -40,7 +40,9 @@ class CountryScreen extends ConsumerWidget {
             itemCount: c.length,
             itemBuilder: (context , index){
               return ListTile(
-                leading:Image.network(c[index].flagUrl),
+                leading:c[index].flagUrl.isNotEmpty?
+                Image.network( c[index].flagUrl ,width: 75, height: 75,):
+                Text(c[index].name , style: TextStyle(fontWeight: FontWeight.bold ,fontSize: 20),) ,
               );
             }),
 

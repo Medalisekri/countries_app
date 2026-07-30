@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:countries_api/models/country.dart';
 import 'package:dio/dio.dart';
@@ -12,7 +11,6 @@ class CountryRepository  {
       'Content-Type':'application/json'
     }
   ));
-
   Future<List<Country>> fetchAllCountries() async {
     try {
       const int limit = 100;
@@ -33,12 +31,28 @@ class CountryRepository  {
         }
         final List<dynamic> rawData =
         response.data['data']['objects'] as List<dynamic>;
+        final int fetchedCount = rawData.length;
+       rawData.removeWhere(
+              (country) => country['names']['common'] == 'Northern Cyprus',
+        );
+        rawData.removeWhere(
+              (country) => country['names']['common'] == 'Abkhazia',
+        );
+        rawData.removeWhere(
+              (country) => country['names']['common'] == 'Israel',
+        );
+        rawData.removeWhere(
+              (country) => country['names']['common'] == 'Somaliland',
+        );
+        rawData.removeWhere(
+              (country) => country['names']['common'] == 'South Ossetia',
+        );
         countries.addAll(
           rawData
               .map((item) => Country.fromJson(item as Map<String, dynamic>))
               .toList(),
         );
-        if (rawData.length < limit) {
+        if (fetchedCount < limit) {
           break;
         }
         offset += limit;
@@ -52,5 +66,4 @@ class CountryRepository  {
       throw Exception('Something went wrong: $e');
     }
   }
-
 }
