@@ -39,11 +39,24 @@ class CountryScreen extends ConsumerWidget {
         ListView.builder(
             itemCount: c.length,
             itemBuilder: (context , index){
-              return ListTile(
+              return GestureDetector(
+                onTap: (){
+
+                },
+                  child:
+             Card(
+                color: Colors.blue.withValues(alpha: 0.4),
+                  shadowColor: Colors.black.withValues(alpha: 0.8),
+                  elevation: 10,
+                  margin: EdgeInsets.all(30),
+                  child:
+               ListTile(
+
                 leading:c[index].flagUrl.isNotEmpty?
                 Image.network( c[index].flagUrl ,width: 75, height: 75,):
-                Text(c[index].name , style: TextStyle(fontWeight: FontWeight.bold ,fontSize: 20),) ,
-              );
+                Text(c[index].name , style: TextStyle(fontWeight: FontWeight.bold ,fontSize: 20),),
+                title: Text(c[index].name),
+              )));
             }),
 
       ),
