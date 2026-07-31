@@ -6,8 +6,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await dotenv.load(fileName: ".env");
   runApp(ProviderScope(child: MaterialApp(
+    debugShowCheckedModeBanner: false,
     routes: {
       '/': (context) => CountryScreen(),
       '/detail':(context)=> CountryDetailScreen(),
