@@ -4,71 +4,89 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CountryScreen extends ConsumerWidget {
-
+class CountryScreen extends ConsumerStatefulWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _CountryScreen();
+}
+class _CountryScreen extends ConsumerState<CountryScreen>{
+  var selectedContinent ='All';
+  @override
+  Widget build(BuildContext context) {
     final state = ref.watch(countryProvider);
-    final c= state.countries;
-    if(state.isLoading) {
+    final continents= ['All',...state.countries.map((c)=>c.continent).toSet()];
+    final filtered = selectedContinent =='All'?state.countries:state.countries.where((c)=>c.continent==selectedContinent).toList();
+     if(state.isLoading) {
       return Scaffold(
         body:SafeArea(child:
-        Container(
-          decoration: BoxDecoration(
-          ),
-          child: CircularProgressIndicator(
+        Center(child: CircularProgressIndicator(
             color: Colors.black,
           ),
         ),
       ));
     }if(state.errorMessage!=null){
       return Scaffold(
-        body:SafeArea(child:
-        Container(
-            decoration: BoxDecoration(
-
-            ),
-            child: Text(state.errorMessage!)
-        ),
-      ));
+        body:SafeArea(
+            child: Center(child: Text(state.errorMessage! ,
+              style: TextStyle(color: Colors.red ,fontSize: 25), )
+      )));
     }
     return Scaffold(
-      body: SafeArea(child:
+      body:
+    SafeArea(child:
       Container(
+        height: double.infinity,
+        width: double.infinity,
         decoration: BoxDecoration(
         ),
-        child:
+        child:Column(children: [
+          Container(
+            padding: EdgeInsets.all(20),
+              margin: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                color: Colors.blueAccent.withValues(alpha: 0.7),
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(15)
+              ),
+              child:
+              SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child:
+              Row(
+                spacing: 20,
+            children: [
+              for(String cou in continents)
+                GestureDetector(
+                  onTap: (){
+                    setState(() =>selectedContinent =cou
+                    );
+                  },
+                  child: Text(cou , style:TextStyle(color:selectedContinent ==cou? Colors.white : Colors.black)),
+                )
+            ],
+          ))) ,
+        Expanded(
+    child:
         ListView.builder(
-            itemCount: c.length,
+            itemCount: filtered.length,
             itemBuilder: (context , index){
               return GestureDetector(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>CountryDetailScreen(country:c[index])));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>CountryDetailScreen(country:filtered[index])));
                 },
                   child:
              Card(
-                color: Colors.blue.withValues(alpha: 0.4),
+                color: Colors.blue.withValues(alpha: 0.6),
                   shadowColor: Colors.black.withValues(alpha: 0.8),
                   elevation: 10,
                   margin: EdgeInsets.all(30),
                   child:
                ListTile(
-                leading:c[index].flagUrl.isNotEmpty?
-                Image.network( c[index].flagUrl ,width: 75, height: 75,):
-                Text(c[index].name , style: TextStyle(fontWeight: FontWeight.bold ,fontSize: 20),),
-                title: Text(c[index].name),
+                leading:
+                Image.network( filtered[index].flagUrl ,width: 75, height: 75,),
+                title: Text(filtered[index].name),
               )));
             }),
-
-      ),
-
+        )])),
     ));
   }
   }
-
-
-
-
-
-
-
