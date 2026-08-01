@@ -1,5 +1,7 @@
 import 'package:countries_api/providers/country.dart';
+import 'package:countries_api/providers/quiz.dart';
 import 'package:countries_api/screens/country_detail.dart';
+import 'package:countries_api/screens/quiz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -87,6 +89,11 @@ class _CountryScreen extends ConsumerState<CountryScreen>{
               )));
             }),
         )])),
-    ));
+    ),
+
+    floatingActionButton: FloatingActionButton(onPressed: (){
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>QuizScreen()));
+ } ,  child:Text('Quiz')),
+    );
   }
   }

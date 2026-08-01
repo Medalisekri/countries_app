@@ -1,13 +1,12 @@
 
-
 import 'package:countries_api/core/utils/quiz_helper.dart';
 import 'package:countries_api/models/country.dart';
 import 'package:countries_api/models/quiz_questions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 class QuizState {
   final List<QuizQuestions> questions;
-  late final int currentIndex;
-  late final int score;
+   final int currentIndex;
+  final int score;
   final bool answered;
   QuizState({
     this.questions = const[],
@@ -30,24 +29,19 @@ class QuizState {
   }
 }
 
-
-
 class QuizProvider extends StateNotifier<QuizState> {
   QuizProvider() : super(QuizState());
 
-  void startQuiz( List<Country> countries){
+  QuizState startQuiz( List<Country> countries){
     final questions =generateQuestions(countries);
-    state = QuizState(questions: questions);
+   return state = QuizState(questions: questions);
   }
-
   void answerQuestion(String answer){
-    if(answer == state.questions[state.currentIndex].correctAnswer){
-      state = state.copyWith(score: state.score + 1 , answered: true);
-    }
+      state = state.copyWith(answered: true,score:answer == state.questions[state.currentIndex].correctAnswer? state.score + 1 : state.score );
   }
   void nextQuestion(){
-    state = state.copyWith(currentIndex: state.currentIndex ++ , answered: false);
+    state = state.copyWith(currentIndex: state.currentIndex + 1 , answered: false);
   }
-
-
-}
+}final quizProvider = StateNotifierProvider<QuizProvider , QuizState>(
+    (ref) =>QuizProvider()
+);

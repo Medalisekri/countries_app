@@ -1,10 +1,10 @@
 class QuizQuestions {
-  final String questions;
+  final String question;
   final List<String> options;
   final String correctAnswer;
 
   QuizQuestions({
-    required this.questions,
+    required this.question,
     required this.options,
     required this.correctAnswer
 });

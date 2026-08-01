@@ -13,7 +13,7 @@ for(final correct in selected) {
   final wrongOptions = other.take(3).toList();
   final options = [correct.name ,...wrongOptions.map((c) => c.name)]..shuffle();
  questions.add(QuizQuestions(
-     questions: correct.flagUrl,
+     question: correct.flagUrl,
      options: options,
      correctAnswer: correct.name));
 }
