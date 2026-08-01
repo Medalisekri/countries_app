@@ -32,9 +32,54 @@ String? selectedAnswer;
       ),
       body: Column(
         children: [
-          TextButton(onPressed: (){
-            ref.read(quizProvider.notifier).startQuiz(countries);
-          }, child: Text('Start') )
+          TextButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) => SimpleDialog(
+                  title: Text('Choose Quiz Type'),
+                  children: [
+                    SimpleDialogOption(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        ref.read(quizProvider.notifier).startQuiz(countries, 'flag');
+                      },
+                      child: Text(' Flag Quiz' ,style: TextStyle(),),
+
+                    ),
+                    SimpleDialogOption(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        ref.read(quizProvider.notifier).startQuiz(countries, 'capital');
+                      },
+                      child: Text(' Capital Quiz'),
+
+                    ),
+                    SimpleDialogOption(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        ref.read(quizProvider.notifier).startQuiz(countries, 'population');
+                      },
+                      child: Text(' Population Quiz'),
+
+                    ),
+                    SimpleDialogOption(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        ref.read(quizProvider.notifier).startQuiz(countries, 'language');
+                      },
+                      child: Text(' Language Quiz'),
+
+                    ),
+
+                  ],
+                ),
+              );
+            },
+            child: Text('Start'),
+
+          ),
+
         ],
       ),
     );
@@ -42,18 +87,67 @@ String? selectedAnswer;
    if(state.currentIndex>=state.questions.length){
       return Scaffold(
         appBar: AppBar(),
-        body:  Text('Your Score is: ${state.score}/${state.questions.length} '),
-      );
+        body:  Column(children: [
+        Center(child:  Text('Your Score is: ${state.score}/${state.questions.length} '),
+
+        ),
+          TextButton( onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) => SimpleDialog(
+                title: Text('Choose Quiz Type'),
+                children: [
+                  SimpleDialogOption(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      ref.read(quizProvider.notifier).startQuiz(countries, 'flag');
+                    },
+                    child: Text(' Flag Quiz' ,style: TextStyle(),),
+
+                  ),
+                  SimpleDialogOption(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      ref.read(quizProvider.notifier).startQuiz(countries, 'capital');
+                    },
+                    child: Text(' Capital Quiz'),
+
+                  ),
+                  SimpleDialogOption(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      ref.read(quizProvider.notifier).startQuiz(countries, 'currency');
+                    },
+                    child: Text(' Currency Quiz'),
+
+                  ),
+                  SimpleDialogOption(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      ref.read(quizProvider.notifier).startQuiz(countries, 'language');
+                    },
+                    child: Text(' Language Quiz'),
+
+                  ),
+
+                ],
+              ),
+            );
+
+          }, child: Text('Another quiz'))
+        ]));
     }
    final currentQuestion = state.questions[state.currentIndex];
-
    return Scaffold(
     appBar: AppBar(),
     body: Column(children: [
       Expanded(child:
-      Image.network(currentQuestion.question),
+          Column(children: [
 
-      ),
+            Text(currentQuestion.question),
+
+
+   ])   ),
       for(String option in currentQuestion.options)
 
         TextButton(

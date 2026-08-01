@@ -32,8 +32,8 @@ class QuizState {
 class QuizProvider extends StateNotifier<QuizState> {
   QuizProvider() : super(QuizState());
 
-  QuizState startQuiz( List<Country> countries){
-    final questions =generateQuestions(countries);
+  QuizState startQuiz( List<Country> countries , String type){
+    final questions =generateQuestions(countries , type);
    return state = QuizState(questions: questions);
   }
   void answerQuestion(String answer){
