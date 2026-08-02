@@ -24,7 +24,6 @@ class _SplashScreen extends ConsumerState<SplashScreen>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             ClipRRect(
               borderRadius: BorderRadius.circular(19),
               child: Image.asset(

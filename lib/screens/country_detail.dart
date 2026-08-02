@@ -28,10 +28,11 @@ class CountryDetailScreen extends StatelessWidget {
                   const SizedBox(height: 15,),
                   Text('Country Detail' ,
                       style: TextStyle(fontSize: 22 , fontWeight: FontWeight.bold , )),
-                const SizedBox(height: 25,),
+                const SizedBox(height: 15,),
                 Text(country!.name ,
                   style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.bold),),
-             Container(
+
+                      SingleChildScrollView(child:  Container(
                  padding: EdgeInsets.all(40),
                  margin: EdgeInsets.all(10),
                  decoration: BoxDecoration(
@@ -44,27 +45,27 @@ class CountryDetailScreen extends StatelessWidget {
                            , Colors.white12.withValues(alpha: 0.4)] )
                         ),
                          child:
-                         Column(
+                           Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                           children: [
                               Text( 'Capital: ${country?.capital}' ,
                                 style: TextStyle(fontWeight: FontWeight.bold ,fontSize: 20),),
-                              const SizedBox(height: 15),
+                              const SizedBox(height: 10),
                               Text('Continent: ${country?.continent}',
                                 style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                              const SizedBox(height: 15),
-                              Text('Languages: ${country?.languages.join(', ')}',
+                              const SizedBox(height: 10),
+                              Text('Languages: ${country?.languages.join(', ')}',softWrap: true,
                                 style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                              const SizedBox(height: 15),
-                              Text('Currencies: ${country?.currencies.join(', ')}',
+                              const SizedBox(height: 10),
+                              Text('Currencies: ${country?.currencies.join(', ')}',softWrap: true,
                                 style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                              const SizedBox(height: 15),
+                              const SizedBox(height: 10),
                               Text('Population: ${country?.population}',
                                 style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                         ]) )
 
-       ]))) ;
+             )]))) ;
   }
 }
 
