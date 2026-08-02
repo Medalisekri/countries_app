@@ -27,12 +27,25 @@ class _CountryScreen extends ConsumerState<CountryScreen>{
       ));
     }if(state.errorMessage!=null){
       return Scaffold(
+        appBar: AppBar(
+
+            title: Text('WorldQuiz'),
+            backgroundColor: Colors.blue,
+            foregroundColor: Colors.white,
+          ),
+
         body:SafeArea(
             child: Center(child: Text(state.errorMessage! ,
               style: TextStyle(color: Colors.red ,fontSize: 25), )
       )));
     }
     return Scaffold(
+      appBar: AppBar(
+        title: Text('WorldQuiz'),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.black,
+        centerTitle: true,
+      ),
       body:
     SafeArea(child:
       Container(
@@ -80,20 +93,27 @@ class _CountryScreen extends ConsumerState<CountryScreen>{
                 color: Colors.blue.withValues(alpha: 0.6),
                   shadowColor: Colors.black.withValues(alpha: 0.8),
                   elevation: 10,
-                  margin: EdgeInsets.all(30),
+                 margin: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                   child:
                ListTile(
                 leading:
-                Image.network( filtered[index].flagUrl ,width: 75, height: 75,),
+                Image.network(
+                  filtered[index].flagUrl,
+                  width: 75,
+                  height: 75,
+                  errorBuilder: (context, error, stack) =>
+                      Icon(Icons.flag, size: 40),
+                ),
                 title: Text(filtered[index].name),
               )));
             }),
         )])),
     ),
 
-    floatingActionButton: FloatingActionButton(onPressed: (){
+    floatingActionButton: FloatingActionButton.extended(onPressed: (){
       Navigator.push(context, MaterialPageRoute(builder: (context)=>QuizScreen()));
- } ,  child:Text('Quiz')),
+ } ,  label: Text('Quiz'),
+      icon: Icon(Icons.quiz),),
     );
   }
   }
