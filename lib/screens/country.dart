@@ -17,15 +17,7 @@ class _CountryScreen extends ConsumerState<CountryScreen>{
     final state = ref.watch(countryProvider);
     final continents= ['All',...state.countries.map((c)=>c.continent).toSet()];
     final filtered = selectedContinent =='All'?state.countries:state.countries.where((c)=>c.continent==selectedContinent).toList();
-     if(state.isLoading) {
-      return Scaffold(
-        body:SafeArea(child:
-        Center(child: CircularProgressIndicator(
-            color: Colors.black,
-          ),
-        ),
-      ));
-    }if(state.errorMessage!=null){
+  if(state.errorMessage!=null){
       return Scaffold(
         appBar: AppBar(
 

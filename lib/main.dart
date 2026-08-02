@@ -1,5 +1,6 @@
 import 'package:countries_api/screens/country.dart';
 import 'package:countries_api/screens/country_detail.dart';
+import 'package:countries_api/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,7 +17,8 @@ Future<void> main() async {
     ),
     debugShowCheckedModeBanner: false,
     routes: {
-      '/': (context) => CountryScreen(),
+      '/': (context)=> SplashScreen(),
+      '/country': (context) => CountryScreen(),
       '/detail':(context)=> CountryDetailScreen(),
     },
   )));

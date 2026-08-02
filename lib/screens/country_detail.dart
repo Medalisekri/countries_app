@@ -8,13 +8,24 @@ class CountryDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          title: Text('WorldQuiz'),
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.black,
+          centerTitle: true,
         ),
         body:
             Center(child:
                 Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Image.network(
+                        country!.flagUrl,
+                        height: 200,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stack) => Icon(Icons.flag, size: 80),
+                      ),
+                  const SizedBox(height: 15,),
                   Text('Country Detail' ,
                       style: TextStyle(fontSize: 22 , fontWeight: FontWeight.bold , )),
                 const SizedBox(height: 25,),
@@ -24,7 +35,7 @@ class CountryDetailScreen extends StatelessWidget {
                  padding: EdgeInsets.all(40),
                  margin: EdgeInsets.all(10),
                  decoration: BoxDecoration(
-                   border: Border.all(color:Colors.black),
+                   border: Border.all(color:Colors.blue.withValues(alpha: 0.7)),
                      borderRadius: BorderRadius.circular(20),
                      gradient: LinearGradient(
                          begin : Alignment.topLeft,
@@ -43,10 +54,10 @@ class CountryDetailScreen extends StatelessWidget {
                               Text('Continent: ${country?.continent}',
                                 style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                               const SizedBox(height: 15),
-                              Text('Languages: ${country?.languages}',
+                              Text('Languages: ${country?.languages.join(', ')}',
                                 style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                               const SizedBox(height: 15),
-                              Text('Currencies: ${country?.currencies}',
+                              Text('Currencies: ${country?.currencies.join(', ')}',
                                 style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                               const SizedBox(height: 15),
                               Text('Population: ${country?.population}',
