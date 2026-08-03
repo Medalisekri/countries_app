@@ -1,6 +1,6 @@
 # 🌍 WorldQuiz
 
-> A Flutter app to explore countries and test your geography knowledge. Browse 240+ countries, filter by continent, and challenge yourself with 4 quiz types — flags, capitals, currencies, and languages.
+> A Flutter app to explore countries and test your geography knowledge. Browse 240+ countries, filter by continent, and challenge yourself with 4 quiz types — flags, capitals, population, and languages.
 
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
@@ -28,7 +28,7 @@
 | Country Explorer | Browse 240+ countries with flag and name |
 | Continent Filter | Filter countries by continent |
 | Country Detail | View capital, continent, languages, currencies, and population |
-| 4 Quiz Types | Flag, Capital, Currency, and Language quizzes |
+| 4 Quiz Types | Flag, Capital, Population, and Language quizzes |
 | Instant Feedback | Correct/wrong answer shown immediately after selection |
 | Score Screen | See your score at the end of each quiz |
 | Play Again | Start a new quiz type without leaving the screen |
