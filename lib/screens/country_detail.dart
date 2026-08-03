@@ -13,7 +13,7 @@ class CountryDetailScreen extends StatelessWidget {
           foregroundColor: Colors.black,
           centerTitle: true,
         ),
-        body:
+        body: SingleChildScrollView(child:
             Center(child:
                 Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -65,7 +65,7 @@ class CountryDetailScreen extends StatelessWidget {
                                 style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                         ]) )
 
-             )]))) ;
+             )])))) ;
   }
 }
 
