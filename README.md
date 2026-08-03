@@ -13,7 +13,7 @@
 
 | Home | Detail | Quiz | Score |
 |---|---|---|---|
-| *<img width="200" height="450" alt="Screenshot_20260803-141327" src="https://github.com/user-attachments/assets/2fcb44ee-22bd-4636-8f66-cc3e06577b17" />* | *<img width="200" height="450" alt="Screenshot_20260803-141349" src="https://github.com/user-attachments/assets/00d067e9-14e8-4ba9-9bc7-982cce0521ce" />* | *<img width="200" height="450" alt="Screenshot_20260803-141407" src="https://github.com/user-attachments/assets/3d395e76-33c5-474a-9ef8-86c7428eb156" />* | *<img width="200" height="450" alt="Screenshot_20260803-141519" src="https://github.com/user-attachments/assets/544ee448-6dfe-49b6-90f8-bc3d06492950" />* |
+|*<img width="200" height="450" alt="Screenshot_20260803-141327" src="https://github.com/user-attachments/assets/2fcb44ee-22bd-4636-8f66-cc3e06577b17" />* |*<img width="200" height="450" alt="Screenshot_20260803-141349" src="https://github.com/user-attachments/assets/00d067e9-14e8-4ba9-9bc7-982cce0521ce" />* |*<img width="200" height="450" alt="Screenshot_20260803-141407" src="https://github.com/user-attachments/assets/3d395e76-33c5-474a-9ef8-86c7428eb156" />* |*<img width="200" height="450" alt="Screenshot_20260803-141519" src="https://github.com/user-attachments/assets/544ee448-6dfe-49b6-90f8-bc3d06492950" />* |
 
 
 
@@ -25,7 +25,7 @@
 
 | Feature | Description |
 |---|---|
-| Country Explorer | Browse 250+ countries with flag and name |
+| Country Explorer | Browse 240+ countries with flag and name |
 | Continent Filter | Filter countries by continent |
 | Country Detail | View capital, continent, languages, currencies, and population |
 | 4 Quiz Types | Flag, Capital, Currency, and Language quizzes |
@@ -48,7 +48,7 @@
 ---
 
 ## Architecture
-
+```
 lib/
 ├── core/
 │ └── assets
@@ -69,7 +69,7 @@ lib/
 │ ├── country_detail.dart
 │ └── quiz.dart
 └── main.dart
-
+```
 The UI never calls the API directly — all data flows through the repository and provider layers.
 
 ---
